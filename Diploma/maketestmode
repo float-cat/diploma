@@ -1,0 +1,6 @@
+#!/bin/bash
+
+cd modes
+pawncc -C64 test.pwn
+cp test.amx ../../Visual/build-Diploma-Desktop_Qt_5_6_0_GCC_64bit-Debug/modes/
+cd ..

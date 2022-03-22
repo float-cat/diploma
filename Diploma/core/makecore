@@ -1,0 +1,29 @@
+#!/bin/bash
+
+GCC='gcc'
+GPP='g++'
+COPY='cp'
+DEL='rm -f'
+CFLAGS='-fPIC'
+CXXFLAGS='-fPIC'
+CDLFLAGS='-shared'
+LIBS='-lpthread -ldl'
+DEFINES='-DPAM_X86_64_DL -DPAWN_CELL_SIZE=64 -DHAVE_I64'
+DLPATH='../../Visual/build-Diploma-Desktop_Qt_5_6_0_GCC_64bit-Debug'
+WRAPDLPATH='../../Visual/Diploma/CoreInterface'
+
+$GPP -c $CXXFLAGS $CDLFLAGS $DEFINES -DOBJ_FILE BigInt/biginteger.cpp -o biginteger.o
+$GPP -c $CXXFLAGS $CDLFLAGS $DEFINES -DOBJ_FILE NetProto/*.cpp
+$GPP -c $CXXFLAGS $CDLFLAGS $DEFINES -DOBJ_FILE GameProcess/gameclasses/*.cpp
+$GPP -c $CXXFLAGS $CDLFLAGS $DEFINES -DOBJ_FILE GameProcess/*.cpp
+$GCC -c $CFLAGS $DEFINES GameProcess/amx/amx.c -o amx.o
+$GCC -c $CFLAGS $DEFINES GameProcess/amx/amxaux.c -o amxaux.o
+$GCC -c $CFLAGS $DEFINES GameProcess/amx/amxcons.c -o amxcons.o
+$GCC -c $CFLAGS $DEFINES GameProcess/amx/amxcore.c -o amxcore.o
+$GCC -c $CFLAGS $DEFINES /usr/include/getch.c -o amxgetch.o
+$GPP $CXXFLAGS $CDLFLAGS $DEFINES core.cpp *.o -o libcore.so $LIBS
+$GPP -c $CXXFLAGS $DEFINES coreinterface.cpp -o coreinterface.o
+$COPY libcore.so ${DLPATH}/lib
+$COPY coreinterface.o $DLPATH
+$COPY coreinterface.hpp apilist.hpp $WRAPDLPATH
+$DEL *.o

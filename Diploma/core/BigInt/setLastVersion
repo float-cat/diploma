@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cp UtilVersion/1_1/biginteger.cpp .
+cp UtilVersion/1_1/biginteger.hpp .

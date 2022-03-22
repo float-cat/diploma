@@ -1,0 +1,5 @@
+#!/bin/bash
+
+#clear
+#gcc echoserver.cpp -o server
+#gcc -rdynamic testclient.cpp core/corezombie.o -o client -lstdc++ -lpthread -ldl

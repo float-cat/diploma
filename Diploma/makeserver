@@ -1,0 +1,13 @@
+#!/bin/bash
+
+
+clear
+cd core/BigInt
+gcc biginteger.cpp -c -DOBJ_FILE -o biginteger.o -lstdc++
+cd ../NetProto
+gcc globalsocket.cpp -c -DOBJ_FILE -o globalsocket.o -lstdc++
+cd ../Asker
+gcc *.cpp -c -DOBJ_FILE -lstdc++
+cd ../..
+gcc testserver.cpp core/BigInt/biginteger.o core/NetProto/globalsocket.o core/Asker/*.o -o server -lstdc++
+rm core/BigInt/biginteger.o core/NetProto/globalsocket.o core/Asker/*.o

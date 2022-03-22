@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cp UtilVersion/Cap/biginteger.cpp .
+cp UtilVersion/Cap/biginteger.hpp .
